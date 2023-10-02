@@ -1,5 +1,6 @@
 import streamlit as st
 import datetime
+import pyperclip
 
 sites = ('高雄', '公司', '南科', '台中', '美光', '新竹', '林口')
 st.title(':male-mechanic:裝機輸入表單:male-mechanic:')
@@ -36,7 +37,7 @@ with col3:
    way = st.radio('', ['去程', '回程', '來回'], label_visibility='collapsed')
 remark = st.text_area('備註')
 st.divider()
-st.text_area('輸出OT字串',
+content = st.text_area('輸出OT字串',
              f'{title}\n'
              f'日期:{d.strftime("%m/%d")}\n'
              f'出發:{got.strftime("%H:%M")}\n'
@@ -49,5 +50,7 @@ st.text_area('輸出OT字串',
              f'開車:{drivers}\n'
              f'自行前往:{goself}\n'
              f'里程:{site1}-{site2} {way}\n'
-             f'備註:{remark}\n',height=330)
-
+             f'備註:{remark}\n', height=330)
+if st.button('Copy'):
+    pyperclip.copy(content)
+    st.success('Text copied successfully!')
