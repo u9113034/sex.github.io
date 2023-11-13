@@ -12,6 +12,9 @@ offt = st.time_input('離廠時間', datetime.time(18, 0), step=300)
 ot = st.number_input('OT', min_value=0.0, step=0.5)
 if ot == 0.0:
     ot = ''
+rest = ''
+if st.checkbox('中午未休息?'):
+    rest = st.radio('', ['休半時', '未休息'], label_visibility='collapsed')
 lunch = st.radio('餐費', [1, 2], index=0)
 night = st.checkbox('過夜')
 night = 1 if night else ''
@@ -19,7 +22,7 @@ if night:
     hotel = st.text_input('請輸入飯店名稱', placeholder='ex.豪美商旅')
 else:
     hotel = ''
-# open staff csv ile
+# open staff txt file
 slist = []
 with open('staff.txt', 'r', encoding='UTF-8') as file_object:
     staff = file_object.readlines()
@@ -50,6 +53,6 @@ content = f'{title}\n'\
            f'開車:{drivers}\n'\
            f'自行前往:{goself}\n'\
            f'里程:{site1}-{site2} {way}\n'\
-           f'備註:{remark}\n'
+           f'備註:中午{rest} {hotel} {remark}\n'
 
 st.code(content, language='basic')
