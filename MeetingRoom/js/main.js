@@ -4,7 +4,7 @@ $(function () {
 
 function Retrieve() {
     var dataArray = [];
-    var URL = '部署為網路應用程式的網址';
+    var URL = 'https://script.google.com/macros/s/AKfycbymg3gyJEDLNHQ8Wq1-UURKYWuLLVfjcIn1WMciiBMbXrzxOzWCUCmcsKTBTfCdpfwp/exec';
     $.ajax({
         url: URL,
         type: 'POST',
